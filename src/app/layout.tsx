@@ -3,7 +3,7 @@ import {Metadata} from "next";
 export const metadata: Metadata = {
     title: {
         default: "NextJs Learn",
-        template: "%s | NextJs",
+        template: "%s | NextJs",                //absolute too
     },
     description: "Next.js routing demo",
 }
