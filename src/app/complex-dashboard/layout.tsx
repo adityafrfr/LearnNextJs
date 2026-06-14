@@ -1,31 +1,36 @@
+"use client"
+
+import { useState } from "react"
+import {Card} from "../components/card"
+
 interface DashboardProps {
     children: React.ReactNode,
     users: React.ReactNode,
     revenue: React.ReactNode,
-    notifications: React.ReactNode
+    notifications: React.ReactNode,
+    logIn: React.ReactNode
 }
 
-export default function ComplexDashboardLayout({children, users, revenue, notifications} : DashboardProps)  {
+export default function ComplexDashboardLayout({children, users, revenue, notifications, logIn}: DashboardProps) {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     return (
         <div>
-            {/* Row 1: Sits at the very top of the page */}
             <div>{children}</div>
-
-            {/* Row 2: A container that forces everything inside it side-by-side */}
-            <div style={{ display: "flex" }}>
-
-                {/* Left Column: Stacks items vertically */}
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div>{users}</div>       {/* On top */}
-                    <div>{revenue}</div>     {/* Directly underneath users */}
+            <div style={{display: "flex"}}>
+                <div style={{display: "flex", flexDirection: "column"}}>
+                    <div>{users}</div>
+                    <div>{revenue}</div>
                 </div>
-
-                {/* Right Column: Takes up all remaining width on the right side */}
-                <div style={{ display: "flex", flex: 1 }}>
-                    {notifications}          {/* Inside the large right box */}
+                <div style={{display: "flex", flex: 1}}>
+                    {isLoggedIn ? notifications : (
+                        <div>
+                            {logIn}
+                            <Card><button style={{border: "1px solid black"}} onClick={() => setIsLoggedIn(true)}>Log In</button></Card>
+                        </div>
+                    )}
                 </div>
-
             </div>
         </div>
-    );
+    )
 }
