@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import {useState} from "react"
 import {Card} from "../components/card"
 
 interface DashboardProps {
@@ -26,7 +26,9 @@ export default function ComplexDashboardLayout({children, users, revenue, notifi
                     {isLoggedIn ? notifications : (
                         <div>
                             {logIn}
-                            <Card><button style={{border: "1px solid black"}} onClick={() => setIsLoggedIn(true)}>Log In</button></Card>
+                            <Card>
+                                <button style={{border: "1px solid black"}} onClick={() => setIsLoggedIn(true)}>Log In</button>
+                            </Card>
                         </div>
                     )}
                 </div>
